@@ -4,22 +4,20 @@ import (
 	"github.com/ryosama/go-sprite"
 )
 
-//////////////////////////////////////////////////////////////////////////////////
-///////////////////////////// Word METHODS ///////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////
-
+//Word contains information about a word currently displayed
 type Word struct {
-	X,Y,Width, Height				float64
-	Text 							string
-	Explosion 						*sprite.Sprite
-	Fail,Success  					bool
-	CurrentLetterIndex,WordScore	int
-	IsActive,IsDestroyed			bool
+	X, Y, Width, Height           float64
+	Text                          string
+	Explosion                     *sprite.Sprite
+	Fail, Success                 bool
+	CurrentLetterIndex, WordScore int
+	IsActive, IsDestroyed         bool
 }
 
-func (word *Word) GetLetterAtIndex(index int) (string,int) {
+//GetLetterAtIndex returns the letter at given index
+func (word *Word) GetLetterAtIndex(index int) (string, int) {
 	if index >= len(word.Text) {
-		return "",0
+		return "", 0
 	}
 
 	jumpForUTF8 := 1
@@ -27,5 +25,5 @@ func (word *Word) GetLetterAtIndex(index int) (string,int) {
 		jumpForUTF8++
 	}
 
-	return word.Text[index : index + jumpForUTF8], jumpForUTF8
+	return word.Text[index : index+jumpForUTF8], jumpForUTF8
 }

@@ -6,11 +6,11 @@ import (
 	"os"
 )
 
-
+//Bindings checks keyboard interaction
 func (game *Game) Bindings() {
 
 	// if Alt+Enter, toogle fullscreen
-	if ebiten.IsKeyPressed(ebiten.KeyAlt) && ebiten.IsKeyPressed(ebiten.KeyEnter){
+	if ebiten.IsKeyPressed(ebiten.KeyAlt) && ebiten.IsKeyPressed(ebiten.KeyEnter) {
 		if game.lastStatePressedKey["Alt+Enter"] == false {
 			if ebiten.IsFullscreen() {
 				ebiten.SetFullscreen(false)
@@ -29,13 +29,13 @@ func (game *Game) Bindings() {
 	}
 
 	// Entrer on Title screen --> start
-	if game.CurrentScreen == TITLE_SCREEN && inpututil.IsKeyJustPressed(ebiten.KeyEnter) {
-		game.CurrentScreen = INGAME_SCREEN
+	if game.CurrentScreen == TitleScreen && inpututil.IsKeyJustPressed(ebiten.KeyEnter) {
+		game.CurrentScreen = InGameScreen
 		game.LaunchInGame()
 	}
 
 	// Entrer on Game over --> restart
-	if game.CurrentScreen == GAMEOVER_SCREEN && inpututil.IsKeyJustPressed(ebiten.KeyEnter) {
-		game.CurrentScreen = TITLE_SCREEN
+	if game.CurrentScreen == GameOverScreen && inpututil.IsKeyJustPressed(ebiten.KeyEnter) {
+		game.CurrentScreen = TitleScreen
 	}
 }
